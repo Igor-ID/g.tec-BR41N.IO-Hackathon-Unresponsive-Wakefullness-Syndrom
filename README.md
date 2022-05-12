@@ -1,2 +1,2 @@
-# g.tec-Hackathon-Unresponsive-Wakefullness-Syndrom-Data-Analysis
-g.tec Hackathon Unresponsive Wakefullness Syndrom Data Analysis
+# g.tec & BR41N.IO Hackathon on Unresponsive Wakefulness Syndrome (UWS) analysis
+
