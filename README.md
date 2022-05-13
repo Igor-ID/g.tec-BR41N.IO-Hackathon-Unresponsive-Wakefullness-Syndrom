@@ -20,11 +20,11 @@ Dataset contains electroencephalograms (EEG) of two patients and is divided into
 ![image](https://user-images.githubusercontent.com/69838126/168012932-c531881c-1b7a-4e7d-a451-83ce07a90b07.png)
 Fig. 1. Dataset.
 
-## 4. Signal processing and classification
+## 4. Signal processing
 
 MATLAB files were converted to Python array format and the raw EEG data was extracted. Data epochs from -100 ms to 600 ms from each stimulation point were created and baseline corrected. The data were notch-filtered at 50 Hz and bandpass-filtered within 0.1–30 Hz. Trials with an amplitude above 100 mV were automatically rejected.
 
-## 5. Signal processing and classification
+## 5. Classification
 
 I use 6 different machine learning pipelines to classify the P300 event-related components based on the each patient EEG data.
 
