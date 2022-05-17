@@ -18,7 +18,7 @@ sequence of eight stimuli was presented at a ratio of 1:1:6. Each run lasted 3 m
 Dataset contains electroencephalograms (EEG) of two patients and is divided into 4 MATLAB files for each patient (Fig. 1). The dataset was only available to hackathon participants.
 
 ![image](https://user-images.githubusercontent.com/69838126/168012932-c531881c-1b7a-4e7d-a451-83ce07a90b07.png)
-Fig. 1. Dataset.
+ Fig. 1. Dataset.
 
 ## 4. Signal processing
 
@@ -42,10 +42,25 @@ Evaluation is done through cross-validation, with accuracy as metric. The classi
 The best accuracy of ~87% was obtained from the ErpCovariance + Tangent space bundle (Fig. 2).
 
 ![image](https://user-images.githubusercontent.com/69838126/168031177-93260bad-1526-4b53-a69f-2c975ca0edb6.png)
-Fig. 2. Classifier performance.
+ Fig. 2. Classifier performance.
 
-However, during the analysis of the EEG data, I combined and averaged all epochs for each patient. Visualizing this, everyone can see in the resulting plot that the first patient shows a distinct N170 ERP response (negative peak at around 170 ms after stimulation) to an auditory stimulus along with a distinct P300 ERP response (positive peak at around 300 ms after stimulation) to the vibrotactile stimulus (Fig. 3). The opposite picture is observed with the second patient, which visualization looks like noise. With this information, we can say with 100% accuracy that the first patient was conscious during the session and the second patient was unconscious during the session. My next goal was to find a classifier that can predict the mentioned visual observations with 100% accuracy.
-For this problem, I combined all the available target epochs of each patient and used the same 6 ML pipelines for classification. All four pipelines based on Riemannian geometry were able to distinguish between the presence or absence of ERP P300 response to stimuli with 100% accuracy (Fig. 4).
+However, during the analysis of the EEG data, I combined and averaged all epochs for each patient. Visualizing this, everyone can see in the resulting plot that the first patient shows a distinct N170 ERP component (negative peak at around 170 ms after stimulation) as a response to an auditory stimulus along with a distinct P300 ERP component (positive peak at around 300 ms after stimulation) as a response to the vibrotactile stimulus (Fig. 3a and Fig. 3b). The opposite picture is observed with the second patient, which visualization looks like noise. With this information, we can say with 100% accuracy that the first patient was conscious during the session and the second patient was unconscious during the session. My next goal was to find a classifier that can predict the mentioned visual observations with 100% accuracy.
+In order to solve this problem, I combined all the available target epochs of each patient and used the same 6 ML pipelines for classification. All four pipelines based on Riemannian geometry were able to distinguish between the presence or absence of ERP P300 with 100% accuracy (Fig. 4).
+
+![image](https://user-images.githubusercontent.com/69838126/168751523-eb8e2c95-6dd1-43ed-8054-683edeb46425.png)
+
+Fig. 3a. Person one. Averaged trials for "target" condition.
+
+
+![image](https://user-images.githubusercontent.com/69838126/168751323-9eb470dc-5b47-4bc9-85b3-0b31721330cf.png)
+
+Fig. 3b. Person two. Averaged trials for "target" condition.
+
+
+![image](https://user-images.githubusercontent.com/69838126/168753253-87bbdf1c-0887-4444-b699-cf4740d6dd2e.png)
+
+Fig. 4. Effectiveness of classifiers in distinguishing between conscious and unconscious (UWS) states.
+
 
 ## 7. Conclusion
 
