@@ -45,7 +45,7 @@ The best accuracy of ~87% was obtained from the ErpCovariance + Tangent space bu
 Fig. 2. Classifier performance.
 
 However, during the analysis of the EEG data, I combined and averaged all epochs for each patient. Visualizing this, everyone can see in the resulting plot that the first patient shows a distinct N170 ERP response (negative peak at around 170 ms after stimulation) to an auditory stimulus along with a distinct P300 ERP response (positive peak at around 300 ms after stimulation) to the vibrotactile stimulus (Fig. 3). The opposite picture is observed with the second patient, which visualization looks like noise. With this information, we can say with 100% accuracy that the first patient was conscious during the session and the second patient was unconscious during the session. My next goal was to find a classifier that can predict the mentioned visual observations with 100% accuracy.
-For this problem, I combined all the available target epochs of each patient and used the same 6 ML pipelines for classification. All four pipelines based on Riemannian geometry were able to distinguish between the presence or absence of ERP P300 response to stimuli (Fig. 4).
+For this problem, I combined all the available target epochs of each patient and used the same 6 ML pipelines for classification. All four pipelines based on Riemannian geometry were able to distinguish between the presence or absence of ERP P300 response to stimuli with 100% accuracy (Fig. 4).
 
 ## 7. Conclusion
 
