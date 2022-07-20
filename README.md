@@ -4,14 +4,12 @@
 
 ## 1. Introduction
 
-Predicting the outcome in terms of recovery from disorders of consciousness (DOC) in patients who survive coma after acute brain injury is challenging. Predicting patient outcome in unresponsive wakefulness syndrome (UWS) and minimally conscious state (MCS) is of great importance because it directly affects the follow-up treatment and financial burden on the patient's family and society. Widely used behavioral assessment of awareness has objective limitations, and it has been estimated that up to 30–40% of MCS
-patients are erroneously classified as UWS. For the current task, Brain-computer interfaces (BCIs) - systems that provide a direct connection between brain activity and computer systems were used. BCIs for DOC patients are based on the principle that performing a mental task (such as discriminating among target and non-target stimuli) can elicit distinct EEG signals that can be used to infer conscious awareness. BCIs for DOC patients often (but not always) rely on auditory or vibrotactile stimuli, since
-DOC patients typically cannot use visual-based interfaces.
+Predicting the outcome in terms of recovery from disorders of consciousness (DOC) in patients who survive coma after acute brain injury is challenging. Predicting patient outcome in unresponsive wakefulness syndrome (UWS) and minimally conscious state (MCS) is of great importance because it directly affects the follow-up treatment and financial burden on the patient's family and society. Widely used behavioral assessment of awareness has objective limitations, and it has been estimated that up to 30–40% of MCS patients are erroneously classified as UWS. For the current task, Brain-computer interfaces (BCIs) - systems that provide a direct connection between brain activity and computer systems were used. BCIs for DOC patients are based on the principle that performing a mental task (such as discriminating among target and non-target stimuli) can elicit distinct EEG signals that can be used to infer conscious awareness. BCIs for DOC patients often (but not always) rely on auditory or vibrotactile stimuli, since DOC patients typically cannot use visual-based interfaces.
 
 ## 2. Methods and materials
 
 The experiments were performed using EEG-based Brain-computer interface. It includes a laptop with installed software, three vibrotactile stimulators installed on both wrists and back of subject, two in-ear headphones, one g.USBamp biosignal amplifier with 16 channels and one EEG cap with 16 active electrodes. EEG data were recorded from an electrode cap with eight channels (Fz, C3, Cz, C4, CP1, CPz, CP2 and Pz) based on the International 10–20 electrode system, then amplified and sampled at 256 Hz. The left and right vibrotactile stimulators were placed on each wrist, and a third stimulator placed on the back receives 75% of the stimuli, acting as a distractor. Thus, each
-sequence of eight stimuli was presented at a ratio of 1:1:6. Each run lasted 3 min and contained four trial blocks. At the beginning of each trial block, the subject was verbally instructed by headphones to mentally count stimuli on the right or the left wrist.
+sequence of eight stimuli was presented at a ratio of 1:1:6. Each run lasted 3 min and contained four trial blocks. At the beginning of each trial block, the subject was verbally instructed by headphones to mentally count stimuli on the right or left wrist.
 
 ## 3. Dataset
 
@@ -28,12 +26,12 @@ MATLAB files were converted to Python array format and the raw EEG data was extr
 
 I use 6 different machine learning pipelines to classify the P300 event-related components based on the each patient EEG data.
 
-* Vect + LR : Vectorization of the trial + Logistic Regression. This can be considered the standard decoding pipeline for MEG / EEG.
+* Vect + LR : Vectorization of the trial + Logistic Regression(LR). This can be considered the standard decoding pipeline for MEG / EEG.
 * Vect + RegLDA : Vectorization of the trial + Regularized LDA. This one is very commonly used in P300 BCIs. It can outperform the previous one but become unusable if the number of dimension is too high.
-* ERPCov + TS: ErpCovariance + Tangent space mapping. Riemannian geometry-based pipeline.
+* ERPCov + TS + LR: ErpCovariance + Tangent space mapping + LR. Riemannian geometry-based pipeline.
 * ERPCov + MDM: ErpCovariance + MDM. Riemannian geometry classifier with classification by Minimum Distance to Mean.
-* XdawnCov + TS: XdawnCov + Tangent space mapping. PyRiemann's ERP classifier, which is decoding in the tangent space with a logistic regression.
-* XdawnCov + MDM: XdawnCovariance + MDM. Similar to the ErpCovariance classifier with classification by Minimum Distance to Mean.
+* XdawnCov + TS + LR: XdawnCov + Tangent space mapping + LR. Decoding applied to EEG data in sensor space decomposed using Xdawn. After spatial filtering, covariances matrices are estimated, then projected in the tangent space and classified with logistic regression.
+* XdawnCov + MDM: XdawnCovariance + MDM. Same but covariances matrices are estimated and classified by the MDM algorithm (Nearest centroid).
 
 Evaluation is done through cross-validation, with accuracy as metric. The classifier score was calculated for each trial group (7 non-target trials, 1 target trial), and the trial with the highest score was identified as the target. If the classified trial was the real target, the classification was considered correct.
 
@@ -59,9 +57,9 @@ Fig. 3b. Person two. Averaged trials for "target" condition.
 
 ![image](https://user-images.githubusercontent.com/69838126/168753253-87bbdf1c-0887-4444-b699-cf4740d6dd2e.png)
 
-Fig. 4. Effectiveness of classifiers in distinguishing between conscious and unconscious (UWS) states.
+Fig. 4. Effectiveness of classifiers in distinguishing between conscious and unconscious states in patients with UWS.
 
 
 ## 7. Conclusion
 
-By combining the vibrotactile P300-based Brain-Computer Interface (BCI), basic signal processing, and Riemann's ERP classifier, we can assess with 100% accuracy whether a patient is in the Unresponsive Wakefulness State or Conscious State.
+By combining the vibrotactile P300-based Brain-Computer Interface, EEG signal processing and classification through Riemannian geometry, we can assess with 100% accuracy whether a patient with UWS is unconscious or conscious.
